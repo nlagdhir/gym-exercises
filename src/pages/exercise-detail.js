@@ -5,33 +5,65 @@ import Detail from "../components/detail";
 import ExerciseVideos from "../components/exercise-videos";
 import SimilarExercises from "../components/similar-exercises";
 
-import { exerciseOptions, fetchData } from "../utils/fetch-data";
+import {
+  exerciseOptions,
+  fetchData,
+  youtubeOptions,
+} from "../utils/fetch-data";
 
 function ExerciseDetail() {
-
   const [exerciseDetail, setExerciseDetail] = useState({});
+  const [exerciseVideos, setExerciseVideos] = useState([]);
+  const [targetMuscleExercises, setTargetMuscleExercises] = useState([]);
+  const [equipmentExercises, setEquipmentExercises] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
-    const fetchExercisesData = async() => {
-      const exerciseDbUrl = 'https://exercisedb.p.rapidapi.com';
-      const youtubeSearchUtl = 'https://youtube-search-and-download.p.rapidapi.com';
+    const fetchExercisesData = async () => {
+      const exerciseDbUrl = "https://exercisedb.p.rapidapi.com";
+      const youtubeSearchUrl =
+        "https://youtube-search-and-download.p.rapidapi.com";
 
-      const exerciseDetailData = await fetchData(`${exerciseDbUrl}/exercises/exercise/${id}`, exerciseOptions);
-      
-      setExerciseDetail(exerciseDetailData); 
-    }
+      const exerciseDetailData = await fetchData(
+        `${exerciseDbUrl}/exercises/exercise/${id}`,
+        exerciseOptions
+      );
+      setExerciseDetail(exerciseDetailData);
+
+      const exerciseVideosData = await fetchData(
+        `${youtubeSearchUrl}/search?query=${exerciseDetailData.name}`,
+        youtubeOptions
+      );
+      setExerciseVideos(exerciseVideosData.contents);
+
+      const targetMuscleExerciseData = await fetchData(
+        `${exerciseDbUrl}/exercises/target/${exerciseDetailData.target}`,
+        exerciseOptions
+      );
+      setTargetMuscleExercises(targetMuscleExerciseData);
+
+      const equipmentExerciseData = await fetchData(
+        `${exerciseDbUrl}/exercises/equipment/${exerciseDetailData.equipment}`,
+        exerciseOptions
+      );
+      setEquipmentExercises(equipmentExerciseData);
+    };
     fetchExercisesData();
-    
-  }, [id])
-  
+  }, [id]);
 
-
-  return <Box>
-    <Detail exerciseDetail={exerciseDetail} />
-    <ExerciseVideos />
-    <SimilarExercises />
-  </Box>;
+  return (
+    <Box>
+      <Detail exerciseDetail={exerciseDetail} />
+      <ExerciseVideos
+        exerciseVideos={exerciseVideos}
+        name={exerciseDetail.name}
+      />
+      <SimilarExercises
+        targetMuscleExercises={targetMuscleExercises}
+        equipmentExercises={equipmentExercises}
+      />
+    </Box>
+  );
 }
 
 export default ExerciseDetail;
