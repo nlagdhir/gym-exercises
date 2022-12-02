@@ -2,7 +2,7 @@
 
 Below feartures are covered : 
  
-- List down all body paerts
+- List down all body parts
 - Search based on body parts
 - Choose body parts from the given list and search
 - Fetch exercise from Rapid API and display results with GIF Images 
@@ -18,7 +18,7 @@ https://gym-exercises-nlagdhir.vercel.app/
 ## Screenshots
 
 ### Homepage Feed : 
-![HomePage](https://pasteboard.co/pFd9cz0U1Dx7.png?text=Homepage+Image)
+![HomePage](https://snipboard.io/i1Hg23.jpg?text=Homepage+Image)
 
 
 ## Run Locally
@@ -52,7 +52,7 @@ Start the server
 
 **Client:** React, Material UI
 
-**Server:** API
+**Server:** Rapid API
 
 
 ## 🔗 Links
