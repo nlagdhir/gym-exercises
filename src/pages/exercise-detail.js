@@ -53,11 +53,11 @@ function ExerciseDetail() {
 
   return (
     <Box>
-      <Detail exerciseDetail={exerciseDetail} />
-      <ExerciseVideos
+      <Detail exerciseDetail={exerciseDetail} /> 
+      {/* <ExerciseVideos
         exerciseVideos={exerciseVideos}
         name={exerciseDetail.name}
-      />
+      /> */}   
       <SimilarExercises
         targetMuscleExercises={targetMuscleExercises}
         equipmentExercises={equipmentExercises}

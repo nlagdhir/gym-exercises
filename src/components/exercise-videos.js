@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Stack, Typography } from "@mui/material";
 
-function ExerciseVideos({ exerciseVideos, name }) {
+function ExerciseVideos({ exerciseVideos, name }) { 
 
   if(!exerciseVideos.length) return 'Loading...' ;
 
@@ -23,7 +23,7 @@ function ExerciseVideos({ exerciseVideos, name }) {
           gap: { lg: "110px", xs: "0" },
         }}
       >
-        {exerciseVideos?.slice(0,3).map((item, index) => (
+        {/* {exerciseVideos?.slice(0,3).map((item, index) => (
           <a
             key={index}
             className="exercise-video"
@@ -41,7 +41,7 @@ function ExerciseVideos({ exerciseVideos, name }) {
               </Typography>
             </Box>
           </a>
-        ) )}
+        ) )} */}
       </Stack>
     </Box>
   );

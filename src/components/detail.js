@@ -1,3 +1,4 @@
+import React from 'react';
 import { Stack, Button, Typography } from "@mui/material";
 
 import BodyPartImage from "../assets/icons/body-part.png";
